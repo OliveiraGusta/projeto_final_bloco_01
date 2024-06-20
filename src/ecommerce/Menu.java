@@ -114,7 +114,6 @@ public class Menu {
 	}
 
 	public static void keyPress() {
-
 		try {
 			System.out.println(Colors.TEXT_RESET + "\n\nPressione Enter para Continuar...");
 			System.in.read();
