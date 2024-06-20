@@ -1,6 +1,6 @@
 package ecommerce.model;
 
-public class Product {
+public abstract class Product {
 	private int id;
 	private int category;
 	private String name;

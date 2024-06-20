@@ -11,11 +11,7 @@ import ecommerce.util.Colors;
 public class Menu {
 
 	public static void main(String[] args) {
-		
-		//Testar Produto Generico
-		Product p1 = new Product(1, 0, "Carrinho de mão", "Lego", 2500.0f, 12);
-		p1.viewProductDetails();
-		
+
 		//Testar Produto Eletronico
 		Product p2 = new ProductElectronic(2, 1, "Notebook", "Samsung", 2500.2f, 123, true, false );
 		p2.viewProductDetails();
