@@ -1,11 +1,21 @@
-package conta;
+package ecommerce;
 
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
-import conta.util.Colors;
+
+import ecommerce.model.Product;
+import ecommerce.model.ProductFood;
+import ecommerce.model.ProductElectronic;
+
+import ecommerce.util.Colors;
 
 public class Menu {
 
 	public static void main(String[] args) {
+
+		
+		
 		Scanner scanner = new Scanner(System.in);
 
 		int option;
@@ -31,8 +41,14 @@ public class Menu {
 			---------------------------------------------
 			Entre com a opção desejada:""", Colors.TEXT_YELLOW_BOLD , Colors.TEXT_RESET);
 
-			option = scanner.nextInt();
-
+			try {
+				option = scanner.nextInt();
+			}catch(InputMismatchException e){
+				System.out.println(Colors.TEXT_WHITE_BOLD + "\nDigite valores inteiros!" +  Colors.TEXT_RESET);
+				scanner.nextLine();
+				option = -1;
+			}
+			
 			if (option == 0) {
 				System.out.println(subTitle);
 				about();
@@ -46,31 +62,42 @@ public class Menu {
 					System.out.println(subTitle);
 				
 					System.out.println("Cadastrar Produto\n\n");
+					
+					keyPress();
 					break;
 					
 				case 2:
 					System.out.println(subTitle);
 	
 					System.out.println("Listar todas os Produto\n\n");
+					
+					keyPress();
 					break;
 				case 3:
 					System.out.println(subTitle);
 	
 					System.out.println("Consultar dados de um Produto - por ID\n\n");
+					
+					keyPress();
 					break;
 				case 4:
 					System.out.println(subTitle);
 	
 					System.out.println("Atualizar dados de um Produto\n\n");
+					keyPress();
 					break;
 				case 5:
 					System.out.println(subTitle);
 					
 					System.out.println("Apagar um produto\n\n");
+					
+					keyPress();
 					break;
 				default:
+	
+					System.out.println(Colors.TEXT_YELLOW_BOLD +"\nOpção Inválida!\n"+ Colors.TEXT_RESET);
 					
-					System.out.println("\nOpção Inválida!\n");
+					keyPress();
 					break;
 			}
 		}
@@ -82,7 +109,17 @@ public class Menu {
 		System.out.println("Gustavo Oliveira - gustavo.oliver456@gmail.com");
 		System.out.println("github.com/OliveiraGusta");
 		System.out.println("Projeto inspirado em: ");
-		System.out.println("AMAZON GO INDIAN");
+		System.out.println(Colors.TEXT_YELLOW_BOLD + "AMAZON GO INDIAN" + Colors.TEXT_RESET);
 		System.out.println("---------------------------------------------");
+	}
+
+	public static void keyPress() {
+		try {
+			System.out.println(Colors.TEXT_RESET + "\n\nPressione Enter para Continuar...");
+			System.in.read();
+		} catch (IOException e) {
+			System.out.println("Você pressionou uma tecla diferente de enter!");
+		}
+		
 	}
 }
