@@ -14,11 +14,13 @@ public class ProductController implements ProductRepository{
 	@Override
 	public void findId(int id) {
 		var product = searchInCollection(id);
-		
+
 		if(product != null)
 			product.viewProductDetails();
+			
 		else
-			System.out.println(Colors.TEXT_WHITE_BOLD +  "\nNão foi encontrado nenhum produto com o id " + id + Colors.TEXT_RESET);
+			System.out.println(Colors.TEXT_WHITE_BOLD +  "\nNão foi encontrado nenhum produto com o ID (" + id + ")" + Colors.TEXT_RESET);
+	
 	}
 	
 	
@@ -33,7 +35,7 @@ public class ProductController implements ProductRepository{
 	@Override
 	public void create(Product product) {
 		listProducts.add(product);
-		System.out.printf("\n\nO produto %s id(%d), foi cadastrado com sucesso!", product.getName(), product.getId());
+		System.out.printf(Colors.TEXT_WHITE_BOLD + "\n\nO produto %s id(%d), foi cadastrado com sucesso!"  + Colors.TEXT_RESET, product.getName(), product.getId());
 	}
 
 	@Override
@@ -42,10 +44,11 @@ public class ProductController implements ProductRepository{
 		
 		if(searchProduct != null) {
 			listProducts.set(listProducts.indexOf(searchProduct), product);
-			System.out.printf("\nO produto código (%d) foi atualizado com sucesso!\n", product.getId());
+			System.out.println(Colors.TEXT_WHITE_BOLD + "\nO produto com o ID (" +  product.getId() + ") foi atualizado com sucesso!\n"  + Colors.TEXT_RESET);
 		}else {
-			System.out.printf("\nO produto com o código (%d) não foi encontrado!\n", product.getId());
+			System.out.println(Colors.TEXT_WHITE_BOLD +  "\nNão foi encontrado nenhum produto com o ID (" +  product.getId() + ")" + Colors.TEXT_RESET);
 		}
+
 	}
 
 	@Override
@@ -54,18 +57,18 @@ public class ProductController implements ProductRepository{
 		
 		if(product != null) {
 			if(listProducts.remove(product) == true)
-				System.out.printf("\nO produto código (%d) foi removido com sucesso!\n", id);
+				System.out.println(Colors.TEXT_WHITE_BOLD + "\nO produto com o ID (" +  id + ") foi removido com sucesso!\n"  + Colors.TEXT_RESET);
 		}else 
-			System.out.printf("\nO produto com o código (%d) não foi encontrado!\n", id);
+			System.out.println(Colors.TEXT_WHITE_BOLD +  "\nNão foi encontrado nenhum produto com o ID (" + id + ")" + Colors.TEXT_RESET);
 		
+	
 	}
 	
-	public Product searchInCollection(int numero) {
+	public Product searchInCollection(int id) {
 		for (var product : listProducts) {
 			if(product.getId() == id) {
 				return product;
-			}
-				
+			}	
 		}
 		
 		return null;

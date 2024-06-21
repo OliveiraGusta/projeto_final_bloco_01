@@ -19,7 +19,7 @@ public class Menu {
 
 		Scanner scanner = new Scanner(System.in);
 
-		int option, id, category, stockQuantity, calories, percentageProtein;
+		int option = 0, category = 0, id, stockQuantity, calories, percentageProtein;
 		float price;
 		boolean bivolt, led, vegetary, light;
 		String name, brand;
@@ -82,10 +82,10 @@ public class Menu {
 							---------------------------------------------
 							1 - Eletronico
 							2 - Alimenticio
-							
+
 							Digite o código da Categoria do produto: """);
 					category = scanner.nextInt();
-				} while (category < 1 && category > 2);
+				} while (category != 1 && category != 2);
 
 				System.out.printf("\nDigite o Preço do produto R$");
 				price = scanner.nextFloat();
@@ -96,24 +96,29 @@ public class Menu {
 
 				switch (category) {
 				case 1 -> {
+					do {
+						System.out.printf("""
 
-					System.out.printf("""
+								Descrição Tecnica
+								---------------------------------------------
+								Digite 1 - Sim
+								Digite 2 - Não
 
-							Descrição Tecnica
-							---------------------------------------------
-							Digite 1 - Sim
-							Digite 2 - Não
-							
-							O produto é Bivolt: """);
+								O produto é Bivolt: """);
+						option = scanner.nextInt();
 
-					option = scanner.nextInt();
+					} while (option != 1 && option != 2);
+
 					if (option == 1)
 						bivolt = true;
 					else
 						bivolt = false;
 
-					System.out.printf("O produto tem Led: ");
-					option = scanner.nextInt();
+					do {
+						System.out.printf("O produto tem Led: ");
+						option = scanner.nextInt();
+					} while (option != 1 && option != 2);
+
 					if (option == 1)
 						led = true;
 					else
@@ -124,23 +129,27 @@ public class Menu {
 				}
 
 				case 2 -> {
-					System.out.printf("""
+					do {
+						System.out.printf("""
 
-							Descrição Tecnica
-							---------------------------------------------
-							Digite 1 - Sim
-							Digite 2 - Não
-							
-							O produto é Vegetariano: """);
+								Descrição Tecnica
+								---------------------------------------------
+								Digite 1 - Sim
+								Digite 2 - Não
+
+								O produto é Vegetariano: """);
+					} while (option != 1 && option != 2);
 
 					option = scanner.nextInt();
 					if (option == 1)
 						vegetary = true;
 					else
 						vegetary = false;
+					do {
+						System.out.printf("O produto é light: ");
+						option = scanner.nextInt();
+					} while (option != 1 && option != 2);
 
-					System.out.printf("O produto é light: ");
-					option = scanner.nextInt();
 					if (option == 1)
 						light = true;
 					else
@@ -174,25 +183,25 @@ public class Menu {
 
 				System.out.printf("Digite o ID do produto: ");
 				id = scanner.nextInt();
-
+				
 				products.findId(id);
 				keyPress();
 				break;
 			case 4:
 				System.out.println(subTitle);
 				System.out.println(Colors.TEXT_WHITE_BOLD + "Atualizar dados de um Produto\n\n" + Colors.TEXT_RESET);
-
+				
 				System.out.printf("Digite o ID do Produto: ");
 				id = scanner.nextInt();
-
+				
 				var searchProduct = products.searchInCollection(id);
-
+				System.out.println("searchProduct: "+ searchProduct);
 				if (searchProduct != null) {
 					products.findId(id);
-					
-					System.out.println(Colors.TEXT_WHITE_BOLD + "\n\nAtualizar dados do Produto ID ("+ id +")" + Colors.TEXT_RESET);
 
-					
+					System.out.println(Colors.TEXT_WHITE_BOLD + "\n\nAtualizar dados do Produto ID (" + id + ")"
+							+ Colors.TEXT_RESET);
+
 					System.out.printf("Digite o Nome do Produto: ");
 					scanner.skip("\\R?");
 					name = scanner.nextLine();
@@ -208,10 +217,10 @@ public class Menu {
 
 								1 - Eletronico
 								2 - Alimenticio
-								
+
 								Digite o código da Categoria do produto: """);
 						category = scanner.nextInt();
-					} while (category < 1 && category > 2);
+					} while (category != 1 && category != 2);
 
 					System.out.printf("\nDigite o Preço do produto R$");
 					price = scanner.nextFloat();
@@ -222,51 +231,60 @@ public class Menu {
 
 					switch (category) {
 					case 1 -> {
+						do {
+							System.out.printf("""
 
-						System.out.printf("""
+									Descrição Tecnica
+									---------------------------------------------
+									Digite 1 - Sim
+									Digite 2 - Não
 
-								Descrição Tecnica
-								---------------------------------------------
-								Digite 1 - Sim
-								Digite 2 - Não
-								
-								O produto é Bivolt: """);
+									O produto é Bivolt: """);
+						} while (option != 1 && option != 2);
 
 						option = scanner.nextInt();
 						if (option == 1)
 							bivolt = true;
 						else
 							bivolt = false;
+						do {
+							System.out.printf("O produto tem Led: ");
+							option = scanner.nextInt();
+						} while (option != 1 && option != 2);
 
-						System.out.printf("O produto tem Led: ");
-						option = scanner.nextInt();
 						if (option == 1)
 							led = true;
 						else
 							led = false;
 
-						products.update(new ProductElectronic(id, category, name, brand, price,
-								stockQuantity, bivolt, led));
+						products.update(
+								new ProductElectronic(id, category, name, brand, price, stockQuantity, bivolt, led));
 					}
 
+					
 					case 2 -> {
-						System.out.printf("""
+						do {
+							System.out.printf("""
 
-								Descrição Tecnica
-								---------------------------------------------
-								Digite 1 - Sim
-								Digite 2 - Não
-								
-								O produto é Vegetariano: """);
+									Descrição Tecnica
+									---------------------------------------------
+									Digite 1 - Sim
+									Digite 2 - Não
 
-						option = scanner.nextInt();
+									O produto é Vegetariano: """);
+
+							option = scanner.nextInt();
+						} while (option != 1 && option != 2);
+
 						if (option == 1)
 							vegetary = true;
 						else
 							vegetary = false;
+						do {
+							System.out.printf("O produto é light: ");
+							option = scanner.nextInt();
+						} while (option != 1 && option != 2);
 
-						System.out.printf("O produto é light: ");
-						option = scanner.nextInt();
 						if (option == 1)
 							light = true;
 						else
@@ -278,8 +296,8 @@ public class Menu {
 						System.out.printf("Porcentagem de proteinas no produto: ");
 						percentageProtein = scanner.nextInt();
 
-						products.update(new ProductFood(id, category, name, brand, price, stockQuantity,
-								vegetary, light, calories, percentageProtein));
+						products.update(new ProductFood(id, category, name, brand, price, stockQuantity, vegetary,
+								light, calories, percentageProtein));
 					}
 					default -> {
 						System.out.println("Código de Categoria Inválido");
@@ -297,12 +315,11 @@ public class Menu {
 				System.out.println(Colors.TEXT_WHITE_BOLD + "\nApagar um produto\n\n" + Colors.TEXT_RESET);
 				System.out.printf("Digite o ID da conta que deseja remover: ");
 				id = scanner.nextInt();
-				
+
 				products.delete(id);
 				keyPress();
 				break;
-				
-				
+
 			default:
 				System.out.println(Colors.TEXT_YELLOW_BOLD + "\nOpção Inválida!\n" + Colors.TEXT_RESET);
 
