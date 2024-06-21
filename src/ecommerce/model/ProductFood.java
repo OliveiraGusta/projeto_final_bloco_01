@@ -72,13 +72,11 @@ public class ProductFood extends Product {
 		System.out.println("Descrição Técnica (" + name + ")");
 		System.out.println("---------------------------------------------");
 		System.out.println("Calorias: " + calories + "kcl");
-		System.out.println("Proteína: " + percentageProtein);
+		System.out.println("Proteína: " + percentageProtein + "%");
 		System.out.println("Light: " + light);
-		System.out.println("Vegetariano: " + vegetary);
-
-		
+		System.out.println("Vegetariano: " + vegetary);		
 	}
 	
-	
+	 
 	
 }
